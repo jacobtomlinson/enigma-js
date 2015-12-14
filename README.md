@@ -2,6 +2,8 @@
 
 An enigma machine emulator.
 
+Build using the specification at http://www.codesandciphers.org.uk/enigma/index.htm.
+
 ## Install
 
 ```
