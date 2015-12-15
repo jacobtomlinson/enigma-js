@@ -20,8 +20,7 @@ module.exports = {
 
     for (var i = 0, len = input_string.length; i < len; i++) {
       if ( config.valid_input.indexOf(input_string[i]) == -1 ) {
-        console.log("Invalid character '" + input_string[i] + "' found in mesage '" + input_string + "'")
-        process.exit()
+        throw new Error("Invalid character '" + input_string[i] + "' found in mesage '" + input_string + "'")
       }
       output_string += this.process_letter(input_string[i])
       chars++
