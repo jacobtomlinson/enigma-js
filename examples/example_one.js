@@ -1,10 +1,10 @@
 var enigma = require('../index.js')
 
-enigma.settings = {
+var default_settings = {
   rotors: [
-    {type: "I", offset: 10, position: "A"},
-    {type: "II", offset: 18, position: "A"},
-    {type: "III", offset: 06, position: "A"}
+    {type: "III", ring: "A", position: "A"},
+    {type: "II",  ring: "A", position: "A"},
+    {type: "I",   ring: "A", position: "A"}
   ],
   plugboard: [
     "AB",
@@ -12,9 +12,24 @@ enigma.settings = {
     "EF",
     "GH"
   ],
-  reflector: "A"
+  reflector: "B",
+  spacing: 0
 }
 
-console.log(
-  enigma.process('A')
-)
+var input_string = 'HELLOWORLD'
+var test_output  = 'XKACBBMTBF' // Generated using a working enigma machine for comparison
+
+console.log(input_string)
+
+// Encrypt
+enigma.load(JSON.parse(JSON.stringify(default_settings)))
+encrypted_message = enigma.process(input_string)
+
+console.log(encrypted_message + ' (' + test_output + ')')
+
+// Decrypt
+default_settings.spacing = 0
+enigma.load(JSON.parse(JSON.stringify(default_settings)))
+decrypted_message = enigma.process(encrypted_message.replace(/ /g,''))
+
+console.log(decrypted_message + ' (' + input_string + ')')
