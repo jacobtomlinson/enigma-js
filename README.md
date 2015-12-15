@@ -6,13 +6,13 @@ Build using the specification at http://www.codesandciphers.org.uk/enigma/index.
 
 ## Install
 
-```
+```bash
 npm install enigma-js
 ```
 
 ## Usage
 
-```
+```JavaScript
 var enigma = require('enigma-js')
 
 var default_settings = {
@@ -44,7 +44,7 @@ console.log(
 
 ### Testing
 
-```
+```bash
 npm install --dev
 gulp test
 ```
