@@ -1,19 +1,4 @@
-# Enigma
-
-An enigma machine emulator.
-
-Build using the specification at http://www.codesandciphers.org.uk/enigma/index.htm.
-
-## Install
-
-```
-npm install enigma-js
-```
-
-## Usage
-
-```
-var enigma = require('enigma-js')
+var enigma = require('../index.js')
 
 var default_settings = {
   rotors: [
@@ -36,15 +21,3 @@ enigma.load(default_settings)
 console.log(
   enigma.process('HELLOWORLD')
 )
-
-// Outputs "XKAC BBMT BF"
-```
-
-## Contibuting
-
-### Testing
-
-```
-npm install --dev
-gulp test
-```

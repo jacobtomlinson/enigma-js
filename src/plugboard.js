@@ -9,8 +9,6 @@ module.exports = {
       }
     }
 
-    new_letter = new_letter || letter
-
-    return new_letter
+    return new_letter || letter
   }
 }

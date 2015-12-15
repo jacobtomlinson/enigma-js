@@ -2,13 +2,12 @@ const config = require('./config.js')
 
 module.exports = {
   shift: function(settings, rotor, letter, direction){
-    // TODO process offset
 
     var rotor_map = config.rotors[settings.rotors[rotor - 1].type].map
     var new_letter = false
 
     var position_offset = settings.rotors[rotor - 1].position.charCodeAt(0) - 65
-    var ring_offset = settings.rotors[rotor - 1].ring.charCodeAt(0) - 65
+    var ring_offset = settings.rotors[rotor - 1].ring
 
     letter = this.letter_maths(letter, position_offset)
     letter = this.letter_maths(letter, ring_offset)

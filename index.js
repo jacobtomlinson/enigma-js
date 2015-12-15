@@ -1,6 +1,7 @@
 const iterator = require('./src/iterator')
 const plugboard = require('./src/plugboard')
 const rotor = require('./src/rotor')
+const config = require('./src/config.js')
 
 module.exports = {
   settings: {},
@@ -12,12 +13,16 @@ module.exports = {
 
   process: function(input_string) {
     // String in
-    // TODO Test for a valid String
+    input_string=input_string.replace(/ /g,'')
 
     output_string = ""
     chars = 0
 
     for (var i = 0, len = input_string.length; i < len; i++) {
+      if ( config.valid_input.indexOf(input_string[i]) == -1 ) {
+        console.log("Invalid character '" + input_string[i] + "' found in mesage '" + input_string + "'")
+        process.exit()
+      }
       output_string += this.process_letter(input_string[i])
       chars++
       if (chars % this.settings.spacing == 0){

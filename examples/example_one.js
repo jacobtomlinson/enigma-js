@@ -2,9 +2,9 @@ var enigma = require('../index.js')
 
 var default_settings = {
   rotors: [
-    {type: "III", ring: "A", position: "A"},
-    {type: "II",  ring: "A", position: "A"},
-    {type: "I",   ring: "A", position: "A"}
+    {type: "III", ring: 0, position: "A"},
+    {type: "II",  ring: 0, position: "A"},
+    {type: "I",   ring: 0, position: "A"}
   ],
   plugboard: [
     "AB",

@@ -17,5 +17,7 @@ module.exports = {
     "C":	['AF', 'BV', 'CP', 'DJ', 'EI', 'GO', 'HY', 'KR', 'LZ', 'MX', 'NW', 'TQ', 'SU'],
     "B Dünn":	['AE', 'BN', 'CK', 'DQ', 'FU', 'GY', 'HW', 'IJ', 'LO', 'MP', 'RX', 'SZ', 'TV'],
     "C Dünn":	['AR', 'BD', 'CO', 'EJ', 'FN', 'GT', 'HK', 'IV', 'LM', 'PW', 'QZ', 'SX', 'UY']
-  }
+  },
+
+  valid_input: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 }
