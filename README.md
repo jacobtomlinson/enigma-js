@@ -1,4 +1,4 @@
-# Enigma
+# Enigma [![Build Status](https://travis-ci.org/jacobtomlinson/enigma-js.svg)](https://travis-ci.org/jacobtomlinson/enigma-js)
 
 An enigma machine emulator.
 
