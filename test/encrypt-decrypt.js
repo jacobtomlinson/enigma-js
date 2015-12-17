@@ -19,62 +19,88 @@ var default_settings = {
 
 describe('Encrypt and Decrypt', function() {
 
-  it("should encrypt 'HELLOWORLD' with default setting and decrypt back to 'HELLOWORLD'", function () {
-    var original = 'HELLOWORLD'
+  describe('M3 Rotors', function() {
 
-    enigma.load(JSON.parse(JSON.stringify(default_settings)))
-    var encrypted = enigma.process(original)
+    it("should encrypt 'HELLOWORLD' with default setting and decrypt back to 'HELLOWORLD'", function () {
+      var original = 'HELLOWORLD'
 
-    enigma.load(JSON.parse(JSON.stringify(default_settings)))
-    var decrypted = enigma.process(encrypted)
+      enigma.load(JSON.parse(JSON.stringify(default_settings)))
+      var encrypted = enigma.process(original)
 
-    assert.equal(original, decrypted)
+      enigma.load(JSON.parse(JSON.stringify(default_settings)))
+      var decrypted = enigma.process(encrypted)
+
+      assert.equal(original, decrypted)
+    })
+
+    it("should encrypt 'HELLOWORLD' with rotors I, II and IV and decrypt back to 'HELLOWORLD'", function () {
+      var original = 'HELLOWORLD'
+
+      var new_settings = JSON.parse(JSON.stringify(default_settings))
+      new_settings.rotors[0].type = "IV"
+
+      enigma.load(JSON.parse(JSON.stringify(new_settings)))
+      var encrypted = enigma.process(original)
+
+      enigma.load(JSON.parse(JSON.stringify(new_settings)))
+      var decrypted = enigma.process(encrypted)
+
+      assert.equal(original, decrypted)
+    })
+
+    it("should encrypt 'HELLOWORLD' with rotors I, II and V and decrypt back to 'HELLOWORLD'", function () {
+      var original = 'HELLOWORLD'
+
+      var new_settings = JSON.parse(JSON.stringify(default_settings))
+      new_settings.rotors[0].type = "V"
+
+      enigma.load(JSON.parse(JSON.stringify(new_settings)))
+      var encrypted = enigma.process(original)
+
+      enigma.load(JSON.parse(JSON.stringify(new_settings)))
+      var decrypted = enigma.process(encrypted)
+
+      assert.equal(original, decrypted)
+    })
+
+    it("should encrypt 'HELLOWORLD' with rotors I, V and II and decrypt back to 'HELLOWORLD'", function () {
+      var original = 'HELLOWORLD'
+
+      var new_settings = JSON.parse(JSON.stringify(default_settings))
+      new_settings.rotors[0].type = "II"
+      new_settings.rotors[1].type = "V"
+
+      enigma.load(JSON.parse(JSON.stringify(new_settings)))
+      var encrypted = enigma.process(original)
+
+      enigma.load(JSON.parse(JSON.stringify(new_settings)))
+      var decrypted = enigma.process(encrypted)
+
+      assert.equal(original, decrypted)
+    })
+
   })
 
-  it("should encrypt 'HELLOWORLD' with rotors I, II and IV and decrypt back to 'HELLOWORLD'", function () {
-    var original = 'HELLOWORLD'
+  describe('M3 Rotors', function() {
 
-    var new_settings = JSON.parse(JSON.stringify(default_settings))
-    new_settings.rotors[0].type = "IV"
+    it("should encrypt 'HELLOWORLD' with rotors I, II, III and β and decrypt back to 'HELLOWORLD'", function () {
+      var original = 'HELLOWORLD'
 
-    enigma.load(JSON.parse(JSON.stringify(new_settings)))
-    var encrypted = enigma.process(original)
+      var new_settings = JSON.parse(JSON.stringify(default_settings))
+      new_settings.rotors.push(
+        {type: "β", ring: 0, position: "A"}
+      )
+      new_settings.reflector = "B Dünn"
 
-    enigma.load(JSON.parse(JSON.stringify(new_settings)))
-    var decrypted = enigma.process(encrypted)
+      enigma.load(JSON.parse(JSON.stringify(new_settings)))
+      var encrypted = enigma.process(original)
 
-    assert.equal(original, decrypted)
-  })
+      enigma.load(JSON.parse(JSON.stringify(new_settings)))
+      var decrypted = enigma.process(encrypted)
 
-  it("should encrypt 'HELLOWORLD' with rotors I, II and V and decrypt back to 'HELLOWORLD'", function () {
-    var original = 'HELLOWORLD'
+      assert.equal(original, decrypted)
+    })
 
-    var new_settings = JSON.parse(JSON.stringify(default_settings))
-    new_settings.rotors[0].type = "V"
-
-    enigma.load(JSON.parse(JSON.stringify(new_settings)))
-    var encrypted = enigma.process(original)
-
-    enigma.load(JSON.parse(JSON.stringify(new_settings)))
-    var decrypted = enigma.process(encrypted)
-
-    assert.equal(original, decrypted)
-  })
-
-  it("should encrypt 'HELLOWORLD' with rotors I, V and II and decrypt back to 'HELLOWORLD'", function () {
-    var original = 'HELLOWORLD'
-
-    var new_settings = JSON.parse(JSON.stringify(default_settings))
-    new_settings.rotors[0].type = "II"
-    new_settings.rotors[1].type = "V"
-
-    enigma.load(JSON.parse(JSON.stringify(new_settings)))
-    var encrypted = enigma.process(original)
-
-    enigma.load(JSON.parse(JSON.stringify(new_settings)))
-    var decrypted = enigma.process(encrypted)
-
-    assert.equal(original, decrypted)
   })
 
 })
