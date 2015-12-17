@@ -4,6 +4,8 @@ An enigma machine emulator.
 
 Build using the specification at http://www.codesandciphers.org.uk/enigma/index.htm.
 
+Currently implements an M3 enigma machine using rotors I, II, III, IV and V.
+
 ## Install
 
 ```bash

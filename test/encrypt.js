@@ -59,45 +59,13 @@ describe('Encrypt', function() {
       assert.equal(enigma.process('HELLOWORLD'), 'UBHPIMPKFW')
     })
 
-    it("should encrypt 'HELLOWORLD' with rotors I, II and VI", function () {
-      var new_settings = JSON.parse(JSON.stringify(default_settings))
-      new_settings.rotors[0].type = "VI"
-      enigma.load(new_settings)
-      assert.equal(enigma.process('HELLOWORLD'), 'PTUHSMUSS')
-    })
-
-    it("should encrypt 'HELLOWORLD' with rotors I, II and VII", function () {
-      var new_settings = JSON.parse(JSON.stringify(default_settings))
-      new_settings.rotors[0].type = "VII"
-      enigma.load(new_settings)
-      assert.equal(enigma.process('HELLOWORLD'), 'PPFJLOGJML')
-    })
-
-    it("should encrypt 'HELLOWORLD' with rotors I, II and VIII", function () {
-      var new_settings = JSON.parse(JSON.stringify(default_settings))
-      new_settings.rotors[0].type = "VIII"
-      enigma.load(new_settings)
-      assert.equal(enigma.process('HELLOWORLD'), 'WPEISMHYI')
-    })
-
-    it("should encrypt 'HELLOWORLD' with rotors VII, I and V", function () {
+    it("should encrypt 'HELLOWORLD' with rotors I, IV and V", function () {
       var new_settings = JSON.parse(JSON.stringify(default_settings))
       new_settings.rotors[0].type = "V"
-      new_settings.rotors[1].type = "I"
-      new_settings.rotors[2].type = "VII"
+      new_settings.rotors[1].type = "IV"
       enigma.load(new_settings)
-      assert.equal(enigma.process('HELLOWORLD'), 'JMCSKOXHWI')
+      assert.equal(enigma.process('HELLOWORLD'), 'OZHADGADIO')
     })
-
-    it("should encrypt 'HELLOWORLD' with rotors VI, VIII and VII", function () {
-      var new_settings = JSON.parse(JSON.stringify(default_settings))
-      new_settings.rotors[0].type = "VII"
-      new_settings.rotors[1].type = "VIII"
-      new_settings.rotors[2].type = "VI"
-      enigma.load(new_settings)
-      assert.equal(enigma.process('HELLOWORLD'), 'FYGTKVBBY')
-    })
-
   })
 
 })
