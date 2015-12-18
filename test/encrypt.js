@@ -43,7 +43,7 @@ describe('Encrypt', function() {
 
   })
 
-  describe('Rotors', function() {
+  describe('M3 Rotors', function() {
 
     it("should encrypt 'HELLOWORLD' with rotors I, II and IV", function () {
       var new_settings = JSON.parse(JSON.stringify(default_settings))
@@ -66,6 +66,60 @@ describe('Encrypt', function() {
       enigma.load(new_settings)
       assert.equal(enigma.process('HELLOWORLD'), 'OZHADGADIO')
     })
+
+  })
+
+  describe('M4 Rotors', function() {
+
+    it("should encrypt 'HELLOWORLD' with rotors I, II, III and β", function () {
+      var new_settings = JSON.parse(JSON.stringify(default_settings))
+      new_settings.rotors.push(
+        {type: "β", ring: 0, position: "A"}
+      )
+      new_settings.reflector = "B Dünn"
+      enigma.load(new_settings)
+      assert.equal(enigma.process('HELLOWORLD'), 'YQORPUNEAY')
+    })
+
+    it("should fail to encrypt with a standard rotor in fourth position", function () {
+      var new_settings = JSON.parse(JSON.stringify(default_settings))
+
+      new_settings.rotors.push(
+        {type: "I", ring: 0, position: "A"}
+      )
+      new_settings.reflector = "B Dünn"
+
+      enigma.load(new_settings)
+
+      assert.throws(function(){enigma.process('HELLOWORLD')}, Error);
+    })
+
+    it("should fail to encrypt with a non-standard rotor in positions 1-3", function () {
+      var new_settings = JSON.parse(JSON.stringify(default_settings))
+      new_settings.rotors[0].type = "β"
+      enigma.load(new_settings)
+
+      assert.throws(function(){enigma.process('HELLOWORLD')}, Error);
+    })
+
+    it("should fail to encrypt with standard reflector in a four rotor machine", function () {
+      var new_settings = JSON.parse(JSON.stringify(default_settings))
+      new_settings.rotors.push(
+        {type: "β", ring: 0, position: "A"}
+      )
+      enigma.load(new_settings)
+
+      assert.throws(function(){enigma.process('HELLOWORLD')}, Error);
+    })
+
+    it("should fail to encrypt with non-standard reflector in a three rotor machine", function () {
+      var new_settings = JSON.parse(JSON.stringify(default_settings))
+      new_settings.reflector = "B Dünn"
+      enigma.load(new_settings)
+
+      assert.throws(function(){enigma.process('HELLOWORLD')}, Error);
+    })
+
   })
 
 })
